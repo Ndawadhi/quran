@@ -3,60 +3,183 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>عرض المصحف</title>
+  <title>مقارنة المصاحف</title>
 
   <style>
     body {
       margin: 0;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       background: #f5f2e9;
       font-family: Arial, sans-serif;
+      color: #222;
+    }
+
+    header {
+      padding: 28px 20px;
       text-align: center;
+      background: #ffffff;
+      border-bottom: 1px solid #ddd;
     }
 
-    .card {
-      background: white;
-      padding: 32px;
+    header h1 {
+      margin: 0 0 10px;
+      font-size: 30px;
+      color: #2f3a1f;
+    }
+
+    header p {
+      margin: 0;
+      color: #666;
+      font-size: 16px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 16px;
+    }
+
+    .mushaf-card {
+      background: #ffffff;
       border-radius: 18px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-      max-width: 420px;
-      margin: 20px;
+      padding: 20px;
+      margin-bottom: 28px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
     }
 
-    h1 {
+    .mushaf-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .mushaf-title h2 {
+      margin: 0 0 6px;
       font-size: 24px;
-      margin-bottom: 12px;
+      color: #2f3a1f;
     }
 
-    p {
-      color: #555;
-      line-height: 1.8;
-      margin-bottom: 24px;
+    .mushaf-title p {
+      margin: 0;
+      color: #666;
+      line-height: 1.7;
     }
 
-    a {
+    .open-link {
       display: inline-block;
-      padding: 14px 24px;
+      padding: 10px 16px;
       background: #627536;
       color: white;
       text-decoration: none;
       border-radius: 10px;
-      font-size: 18px;
+      white-space: nowrap;
+    }
+
+    .embed-container {
+      position: relative;
+      width: 100%;
+      height: 75vh;
+      min-height: 520px;
+      overflow: hidden;
+      border-radius: 14px;
+      border: 1px solid #ddd;
+      background: #fafafa;
+    }
+
+    .embed-container iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .note {
+      margin-top: 12px;
+      font-size: 14px;
+      color: #777;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 700px) {
+      header h1 {
+        font-size: 24px;
+      }
+
+      .embed-container {
+        height: 70vh;
+        min-height: 420px;
+      }
     }
   </style>
 </head>
 
 <body>
-  <div class="card">
-    <h1>مصحف مجمع الملك فهد</h1>
-    <p>اضغط الزر لفتح المصحف في صفحة المجمع الرسمية.</p>
 
-    <a href="https://qurancomplex.gov.sa/isdarat-hafs/#flipbook-df_11291/1/" target="_blank">
-      فتح المصحف
-    </a>
-  </div>
+  <header>
+    <h1>مقارنة المصاحف</h1>
+    <p>صفحة مخصصة لعرض المصاحف الرقمية ومقارنتها من مصادرها الرسمية.</p>
+  </header>
+
+  <main class="container">
+
+    <section class="mushaf-card">
+      <div class="mushaf-header">
+        <div class="mushaf-title">
+          <h2>مصحف مجمع الملك فهد - رواية حفص</h2>
+          <p>عرض المصحف من موقع مجمع الملك فهد لطباعة المصحف الشريف.</p>
+        </div>
+
+        <a
+          class="open-link"
+          href="https://qurancomplex.gov.sa/isdarat-hafs/#flipbook-df_11291/1/"
+          target="_blank">
+          فتح المصدر
+        </a>
+      </div>
+
+      <div class="embed-container">
+        <iframe
+          src="https://qurancomplex.gov.sa/isdarat-hafs/#flipbook-df_11291/1/"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <div class="note">
+        إذا لم يظهر المصحف داخل الإطار، فهذا يعني أن المصدر يمنع التضمين داخل مواقع خارجية. استخدم زر “فتح المصدر”.
+      </div>
+    </section>
+
+    <section class="mushaf-card">
+      <div class="mushaf-header">
+        <div class="mushaf-title">
+          <h2>مصحف آخر</h2>
+          <p>ضع هنا اسم المصحف أو الرواية أو المصدر.</p>
+        </div>
+
+        <a
+          class="open-link"
+          href="#"
+          target="_blank">
+          فتح المصدر
+        </a>
+      </div>
+
+      <div class="embed-container">
+        <iframe
+          src=""
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <div class="note">
+        أضف رابط التضمين أو رابط المصدر هنا.
+      </div>
+    </section>
+
+  </main>
+
 </body>
 </html>
