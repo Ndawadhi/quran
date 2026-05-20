@@ -3,114 +3,176 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>مقارنة المصاحف</title>
+
+  <title>المصاحف الرقمية</title>
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-      background: #f5f2e9;
       font-family: Arial, sans-serif;
+      background: #f5f2e9;
       color: #222;
     }
 
     header {
-      padding: 28px 20px;
+      min-height: 38vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
-      background: #ffffff;
-      border-bottom: 1px solid #ddd;
+      padding: 50px 20px;
+      background: linear-gradient(135deg, #f7f3ed, #ffffff);
+      border-bottom: 1px solid #e0d8c8;
+    }
+
+    header .hero {
+      max-width: 800px;
     }
 
     header h1 {
-      margin: 0 0 10px;
-      font-size: 30px;
+      margin: 0 0 16px;
+      font-size: 42px;
       color: #2f3a1f;
     }
 
     header p {
       margin: 0;
-      color: #666;
-      font-size: 16px;
+      font-size: 18px;
+      line-height: 1.9;
+      color: #555;
     }
 
-    .container {
-      max-width: 1200px;
-      margin: 30px auto;
-      padding: 0 16px;
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #e5e0d6;
+      padding: 12px 20px;
+      text-align: center;
     }
 
-    .mushaf-card {
-      background: #ffffff;
-      border-radius: 18px;
-      padding: 20px;
-      margin-bottom: 28px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    nav a {
+      display: inline-block;
+      margin: 6px;
+      padding: 9px 14px;
+      color: #2f3a1f;
+      text-decoration: none;
+      border: 1px solid #d8d0bf;
+      border-radius: 999px;
+      background: #fff;
+      font-size: 14px;
     }
 
-    .mushaf-header {
+    main {
+      max-width: 1250px;
+      margin: 0 auto;
+      padding: 30px 16px 60px;
+    }
+
+    section.mushaf {
+      background: #fff;
+      border-radius: 22px;
+      margin-bottom: 36px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      border: 1px solid #e8e1d4;
+    }
+
+    .mushaf-info {
+      padding: 22px;
       display: flex;
       justify-content: space-between;
-      gap: 16px;
-      align-items: center;
-      margin-bottom: 16px;
+      align-items: flex-start;
+      gap: 18px;
       flex-wrap: wrap;
+      border-bottom: 1px solid #eee8dd;
     }
 
-    .mushaf-title h2 {
-      margin: 0 0 6px;
-      font-size: 24px;
+    .mushaf-info h2 {
+      margin: 0 0 8px;
+      font-size: 26px;
       color: #2f3a1f;
     }
 
-    .mushaf-title p {
+    .mushaf-info p {
       margin: 0;
+      line-height: 1.8;
       color: #666;
-      line-height: 1.7;
+      font-size: 15px;
     }
 
-    .open-link {
+    .source-link {
       display: inline-block;
-      padding: 10px 16px;
       background: #627536;
       color: white;
+      padding: 11px 18px;
+      border-radius: 12px;
       text-decoration: none;
-      border-radius: 10px;
       white-space: nowrap;
+      font-size: 15px;
     }
 
     .embed-container {
       position: relative;
-      width: 100%;
-      height: 75vh;
-      min-height: 520px;
+      padding-bottom: 50%;
+      height: 0;
       overflow: hidden;
-      border-radius: 14px;
-      border: 1px solid #ddd;
-      background: #fafafa;
+      max-width: 100%;
+      background: #f7f7f7;
     }
 
-    .embed-container iframe {
+    .embed-container iframe,
+    .embed-container object,
+    .embed-container embed {
       position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
+      top: 0;
+      left: 0;
+      width: 100% !important;
+      height: 100% !important;
       border: 0;
     }
 
     .note {
-      margin-top: 12px;
-      font-size: 14px;
+      padding: 12px 20px 18px;
       color: #777;
+      font-size: 13px;
       line-height: 1.7;
+      background: #fff;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: #777;
+      font-size: 14px;
     }
 
     @media (max-width: 700px) {
       header h1 {
-        font-size: 24px;
+        font-size: 30px;
+      }
+
+      header p {
+        font-size: 16px;
+      }
+
+      .mushaf-info h2 {
+        font-size: 22px;
       }
 
       .embed-container {
-        height: 70vh;
-        min-height: 420px;
+        padding-bottom: 95%;
+      }
+
+      .source-link {
+        width: 100%;
+        text-align: center;
       }
     }
   </style>
@@ -119,24 +181,37 @@
 <body>
 
   <header>
-    <h1>مقارنة المصاحف</h1>
-    <p>صفحة مخصصة لعرض المصاحف الرقمية ومقارنتها من مصادرها الرسمية.</p>
+    <div class="hero">
+      <h1>المصاحف الرقمية</h1>
+      <p>
+        صفحة واحدة لعرض مجموعة من المصاحف الرقمية من مصادرها الرسمية، مع إمكانية المقارنة السريعة بينها.
+      </p>
+    </div>
   </header>
 
-  <main class="container">
+  <nav>
+    <a href="#hafs">مصحف حفص</a>
+    <a href="#mushaf-2">مصحف آخر</a>
+    <a href="#mushaf-3">مصحف ثالث</a>
+  </nav>
 
-    <section class="mushaf-card">
-      <div class="mushaf-header">
-        <div class="mushaf-title">
+  <main>
+
+    <!-- المصحف الأول -->
+    <section class="mushaf" id="hafs">
+      <div class="mushaf-info">
+        <div>
           <h2>مصحف مجمع الملك فهد - رواية حفص</h2>
-          <p>عرض المصحف من موقع مجمع الملك فهد لطباعة المصحف الشريف.</p>
+          <p>
+            المصحف الشريف من إصدارات مجمع الملك فهد لطباعة المصحف الشريف.
+          </p>
         </div>
 
         <a
-          class="open-link"
+          class="source-link"
           href="https://qurancomplex.gov.sa/isdarat-hafs/#flipbook-df_11291/1/"
           target="_blank">
-          فتح المصدر
+          فتح في المصدر
         </a>
       </div>
 
@@ -148,22 +223,25 @@
       </div>
 
       <div class="note">
-        إذا لم يظهر المصحف داخل الإطار، فهذا يعني أن المصدر يمنع التضمين داخل مواقع خارجية. استخدم زر “فتح المصدر”.
+        هذا القسم يستخدم رابط التضمين المتاح من موقع المجمع.
       </div>
     </section>
 
-    <section class="mushaf-card">
-      <div class="mushaf-header">
-        <div class="mushaf-title">
-          <h2>مصحف آخر</h2>
-          <p>ضع هنا اسم المصحف أو الرواية أو المصدر.</p>
+    <!-- انسخ هذا القسم لإضافة مصحف جديد -->
+    <section class="mushaf" id="mushaf-2">
+      <div class="mushaf-info">
+        <div>
+          <h2>اسم المصحف الثاني</h2>
+          <p>
+            ضع هنا وصفًا مختصرًا للمصحف: الرواية، جهة الإصدار، الطبعة، أو أي معلومة مقارنة.
+          </p>
         </div>
 
         <a
-          class="open-link"
+          class="source-link"
           href="#"
           target="_blank">
-          فتح المصدر
+          فتح في المصدر
         </a>
       </div>
 
@@ -175,11 +253,44 @@
       </div>
 
       <div class="note">
-        أضف رابط التضمين أو رابط المصدر هنا.
+        ضع رابط التضمين في خاصية src داخل iframe.
+      </div>
+    </section>
+
+    <section class="mushaf" id="mushaf-3">
+      <div class="mushaf-info">
+        <div>
+          <h2>اسم المصحف الثالث</h2>
+          <p>
+            أضف هنا بيانات المصحف الثالث.
+          </p>
+        </div>
+
+        <a
+          class="source-link"
+          href="#"
+          target="_blank">
+          فتح في المصدر
+        </a>
+      </div>
+
+      <div class="embed-container">
+        <iframe
+          src=""
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <div class="note">
+        يمكن حذف هذا القسم أو تكراره حسب عدد المصاحف.
       </div>
     </section>
 
   </main>
+
+  <footer>
+    صفحة تجريبية لعرض المصاحف الرقمية.
+  </footer>
 
 </body>
 </html>
